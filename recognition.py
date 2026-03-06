@@ -26,7 +26,7 @@ def process_image(file_path):
         
         return binary_matrix
     except Exception as e:
-        print(f"❌ Erreur lors du traitement de {file_path}: {e}")
+        print(f"Erreur lors du traitement de {file_path}: {e}")
         return None
 
 def load_dataset(folder_path):
@@ -36,7 +36,7 @@ def load_dataset(folder_path):
     dataset = {}
     if not os.path.exists(folder_path):
         os.makedirs(folder_path)
-        print(f"⚠️ Dossier '{folder_path}' créé. Placez vos PNG (0.png, 1.png...) dedans.")
+        print(f"Dossier '{folder_path}' créé. Placez vos PNG (0.png, 1.png...) dedans.")
         return dataset
 
     for filename in os.listdir(folder_path):
@@ -46,7 +46,7 @@ def load_dataset(folder_path):
             if matrix is not None:
                 dataset[label] = matrix
                 
-    print(f"✅ Dataset chargé : {len(dataset)} modèles trouvés.")
+    print(f"Dataset chargé : {len(dataset)} modèles trouvés.")
     return dataset
 
 def predict(input_matrix, dataset):
@@ -92,8 +92,8 @@ if __name__ == "__main__":
                 # Prédiction
                 digit, score = predict(test_matrix, reference_data)
                 
-                print(f"\n🎯 RÉSULTAT : Chiffre {digit}")
-                print(f"📊 CONFIANCE : {score:.2f}%")
+                print(f"\n RÉSULTAT : Chiffre {digit}")
+                print(f"CONFIANCE : {score:.2f}%")
                 
                 # On remplace 1 par '#' et 0 par '.' pour voir le chiffre
                 print("\nAperçu de ce que l'IA a vu :")
