@@ -39,3 +39,13 @@ if image_data:
     print(f"File: {FILENAME}")
     print(f"AI Prediction: {result}")
     print(f"Confidence: {score:.1f}%")
+
+def print_matrix(data):
+    """Prints the 5x5 matrix in the console for debugging"""
+    for i in range(0, 25, 5):
+        row = data[i:i+5]
+        visual_row = "".join(["■ " if p == 1 else ". " for p in row])
+        print(visual_row)
+
+print("Image analyzed by AI:")
+print_matrix(image_data)
