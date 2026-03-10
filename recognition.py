@@ -2,7 +2,7 @@ import os
 import numpy as np
 from PIL import Image
 
-# --- CONFIGURATION ---
+# CONFIGURATION
 DATASET_PATH = "./dataset"
 TARGET_SIZE = (28, 28) 
 THRESHOLD = 127         
@@ -68,7 +68,7 @@ def predict(input_matrix, dataset):
     confidence = (max_score / (TARGET_SIZE[0] * TARGET_SIZE[1])) * 100
     return best_digit, confidence
 
-# --- EXECUTION PRINCIPALE ---
+# EXECUTION 
 if __name__ == "__main__":
     print("=== IA Digit Recognizer (Pillow + NumPy) ===")
     
@@ -89,13 +89,13 @@ if __name__ == "__main__":
             test_matrix = process_image(filename)
             
             if test_matrix is not None:
+                # On remplace 1 par '#' et 0 par '.' pour voir le chiffre
+                print("\nAperçu de ce que l'IA a vu :")
+                for row in test_matrix:
+                    print("".join(['#' if p == 1 else '.' for p in row]))
+                    
                 # Prédiction
                 digit, score = predict(test_matrix, reference_data)
                 
                 print(f"\n RÉSULTAT : Chiffre {digit}")
                 print(f"CONFIANCE : {score:.2f}%")
-                
-                # On remplace 1 par '#' et 0 par '.' pour voir le chiffre
-                print("\nAperçu de ce que l'IA a vu :")
-                for row in test_matrix:
-                    print("".join(['#' if p == 1 else '.' for p in row]))
