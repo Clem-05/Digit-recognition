@@ -62,7 +62,7 @@ def predict(input_matrix, dataset):
         
         if score > max_score:
             max_score = score
-            best_digit = label
+            best_digit = label[0]
             
     # Calcul du pourcentage de confiance (sur 784 pixels au total)
     confidence = (max_score / (TARGET_SIZE[0] * TARGET_SIZE[1])) * 100
@@ -90,12 +90,14 @@ if __name__ == "__main__":
             
             if test_matrix is not None:
                 # On remplace 1 par '#' et 0 par '.' pour voir le chiffre
-                print("\nAperçu de ce que l'IA a vu :")
+                print("\nAperçu :")
                 for row in test_matrix:
-                    print("".join(['#' if p == 1 else '.' for p in row]))
+                    print("".join(['1' if p == 1 else '0' for p in row]))
                     
                 # Prédiction
                 digit, score = predict(test_matrix, reference_data)
                 
                 print(f"\n RÉSULTAT : Chiffre {digit}")
                 print(f"CONFIANCE : {score:.2f}%")
+            else:
+                print("Erreur : Impossible de traiter l'image. Assurez-vous que le fichier existe et est une image valide.")    
