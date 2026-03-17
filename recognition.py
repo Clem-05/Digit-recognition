@@ -9,7 +9,7 @@ THRESHOLD = 127
 
 def process_image(file_path):
     """
-    Transforme n'importe quelle image (PNG, JPG) en matrice binaire 28x28.
+    Transforme n'importe quelle image (PNG, JPG) en matrice binaire.
     """
     try:
         # 1. Acquisition et Grayscale (L = Luminance)
@@ -31,17 +31,17 @@ def process_image(file_path):
 
 def load_dataset(folder_path):
     """
-    Charge toutes les images PNG du dossier dataset pour servir de modèles.
+    Charge toutes les images du dossier dataset pour servir de modèles.
     """
     dataset = {}
     if not os.path.exists(folder_path):
         os.makedirs(folder_path)
-        print(f"Dossier '{folder_path}' créé. Placez vos PNG (0.png, 1.png...) dedans.")
+        print(f"Dossier '{folder_path}' créé. Placez vos images dedans.")
         return dataset
 
     for filename in os.listdir(folder_path):
-        if filename.lower().endswith(".png"):
-            label = os.path.splitext(filename)[0] # Récupère le nom sans .png
+        if filename.lower().endswith((".png", ".jpg", ".jpeg")):
+            label = os.path.splitext(filename)[0] # Récupère le nom sans l'extension
             matrix = process_image(os.path.join(folder_path, filename))
             if matrix is not None:
                 dataset[label] = matrix
